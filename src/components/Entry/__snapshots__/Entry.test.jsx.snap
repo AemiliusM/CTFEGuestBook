@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render an entry 1`] = `
+<div>
+  <div>
+    <h2>
+      billy
+    </h2>
+    <p>
+      hello
+    </p>
+  </div>
+</div>
+`;
