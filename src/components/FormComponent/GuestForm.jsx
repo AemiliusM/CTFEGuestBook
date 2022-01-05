@@ -1,12 +1,16 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 import { useEntries } from '../../context/EntryContext';
 import { useUser } from '../../context/UserContext';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function GuestForm() {
   const [name, setName] = useState('');
   const [guestEntry, setGuestEntry] = useState('');
   const { user, setUser } = useUser();
   const { entries, setEntries } = useEntries();
+  const history = useHistory();
+  const { logout } = useAuth();
 
   function updateGuestName() {
     if (!guestEntry) return;
@@ -66,6 +70,7 @@ export default function GuestForm() {
             onClick={() => {
               setUser('');
               setName('');
+              logout(() => history.push('/'));
             }}
           >
             Not {user}?
