@@ -6,9 +6,7 @@ import { useForm } from '../../hooks/useForm';
 
 export default function Login() {
   const history = useHistory();
-  console.log(history, 'History');
   const location = useLocation();
-  // console.log('location', location);
   const auth = useAuth();
   const { formState, handleFormChange } = useForm({ email: '', password: '' });
   const [error, setError] = useState(null);
