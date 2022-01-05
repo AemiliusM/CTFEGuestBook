@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useForm } from '../../hooks/useForm';
 
 export default function Login() {
   const history = useHistory();
+  console.log(history, 'History');
   const location = useLocation();
+  // console.log('location', location);
   const auth = useAuth();
   const { formState, handleFormChange } = useForm({ email: '', password: '' });
   const [error, setError] = useState(null);
@@ -17,7 +20,7 @@ export default function Login() {
     const loginWorked = auth.login(formState.email, formState.password);
 
     if (loginWorked) {
-      history.replaceState(from.pathname);
+      history.replace(from);
     } else {
       setError('incorrect email or password');
     }
@@ -31,13 +34,13 @@ export default function Login() {
           onSubmit={handleLogin}
           className="grid grid-cols-[1fr_2fr] grid-rows-3"
         >
-          <label htmlFor="username" className="self-center text-right">
-            Username
+          <label htmlFor="email" className="self-center text-right">
+            Email
           </label>
           <input
-            id="username"
-            type="text"
-            name="username"
+            id="email"
+            type="email"
+            name="email"
             value={formState.email}
             onChange={handleFormChange}
             className="border p-2 m-3"
@@ -62,9 +65,9 @@ export default function Login() {
             Sign In
           </button>
         </form>
-        <p className="text-center text-red-500 font-bold">
+        <span className="text-center text-red-500 font-bold">
           <p>{error}</p>
-        </p>
+        </span>
       </fieldset>
       ;
     </>
